@@ -156,7 +156,7 @@ const RomanNumerals = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "
 const StorySection: React.FC<{ 
   story: Story; 
   index: number; 
-  containerRef: React.RefObject<HTMLDivElement>;
+  containerRef: React.RefObject<HTMLDivElement | null>;
   setActiveIndex: (index: number) => void;
 }> = ({ story, index, containerRef, setActiveIndex }) => {
   const ref = useRef(null);
