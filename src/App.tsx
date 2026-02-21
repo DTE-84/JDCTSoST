@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import Header from './components/Header';
+import Header from './Header';
 import { motion, useScroll, useTransform, AnimatePresence, useSpring } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import './index.css';
@@ -341,13 +341,14 @@ function App() {
               >
                 “Between the 18th green and the blank page, I spend my time observing the human condition. I write short stories that explore the same principles I find on the course: that a great result takes focus, a bit of luck, and the willingness to play the ball where it lies.”
               </motion.div>
-              <motion.div 
+              <motion.button
                 animate={{ opacity: [0.2, 0.5, 0.2] }}
                 transition={{ repeat: Infinity, duration: 4 }}
                 className="enter-hint"
+                onClick={(e) => { e.stopPropagation(); setIsEntered(true); }}
               >
                 Click to enter the study
-              </motion.div>
+              </motion.button>
             </motion.div>
           </motion.div>
         ) : (
