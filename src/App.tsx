@@ -21,7 +21,7 @@ const stories: Story[] = [
     isAbout: true,
     title: "The Sum of Small Things",
     subtitle: "Notes on Life and Living….And Some Dumb Stuff Too",
-    portrait: "assets/JDCSOLO.png",
+    portrait: "assets/jdc1.jpg",
     content: [
       "Former lawyer and recovering pastor. Freelance writer and author of three half-finished novels, dozens of half-completed blogs, and hundreds of half-baked ideas.",
       "I've learned life is lived in the little things, and it's the sum of those little things that make living worthwhile.",
@@ -160,7 +160,7 @@ const StorySection: React.FC<{
   containerRef: React.RefObject<HTMLDivElement | null>;
   setActiveIndex: (index: number) => void;
 }> = ({ story, index, containerRef, setActiveIndex }) => {
-  const ref = useRef(null);
+  const ref = useRef<HTMLElement>(null);
   const isAbout = story.isAbout;
   const storyIndex = isAbout ? -1 : (typeof story.id === 'number' ? story.id - 1 : index);
 
@@ -173,7 +173,8 @@ const StorySection: React.FC<{
       },
       {
         root: containerRef.current,
-        threshold: 0.5
+        threshold: 0.3, // Lowered threshold for better mobile detection
+        rootMargin: "-10% 0px -10% 0px"
       }
     );
 
@@ -191,18 +192,20 @@ const StorySection: React.FC<{
   });
 
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
+    stiffness: 70, // Slightly softer spring
+    damping: 25,
     restDelta: 0.001
   });
 
-  const opacity = useTransform(smoothProgress, [0, 0.1, 0.75, 0.9], [0, 1, 1, 0]);
-  const y = useTransform(smoothProgress, [0, 0.1, 0.75, 0.9], [300, 0, 0, -200]); 
-  const rotateX = useTransform(smoothProgress, [0, 0.1, 0.75, 0.9], [15, 0, 0, -15]);
-  const blur = useTransform(smoothProgress, [0, 0.1, 0.75, 0.9], ["blur(15px)", "blur(0px)", "blur(0px)", "blur(10px)"]);
+  // More natural transition curves
+  const opacity = useTransform(smoothProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  const y = useTransform(smoothProgress, [0, 0.2, 0.8, 1], [80, 0, 0, -50]); 
+  const scale = useTransform(smoothProgress, [0, 0.2, 0.8, 1], [0.98, 1, 1, 0.98]);
+  const rotateX = useTransform(smoothProgress, [0, 0.2, 0.8, 1], [5, 0, 0, -5]);
+  const blur = useTransform(smoothProgress, [0, 0.15, 0.85, 1], ["blur(5px)", "blur(0px)", "blur(0px)", "blur(5px)"]);
   
-  const backgroundOpacity = useTransform(smoothProgress, [0, 0.2, 0.8, 1], [0, 0.35, 0.35, 0]);
-  const backgroundScale = useTransform(smoothProgress, [0, 1], [1.2, 1.05]);
+  const backgroundOpacity = useTransform(smoothProgress, [0, 0.3, 0.7, 1], [0, 0.4, 0.4, 0]);
+  const backgroundScale = useTransform(smoothProgress, [0, 1], [1.15, 1.02]);
 
   return (
     <section ref={ref} id={isAbout ? "story-about" : `story-${storyIndex}`} className="story-section">
@@ -217,7 +220,7 @@ const StorySection: React.FC<{
       
       <motion.div 
         className="story-content-wrapper"
-        style={{ opacity, y, rotateX, filter: blur, perspective: "1200px" }}
+        style={{ opacity, y, scale, rotateX, filter: blur, perspective: "1500px" }}
       >
         <div className={`story-card ${isAbout ? 'about-card' : ''}`}>
           <div className="card-texture"></div>
@@ -272,20 +275,24 @@ const StorySection: React.FC<{
 };
 
 function App() {
-  console.log("App Component Init");
   const [isEntered, setIsEntered] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(-1);
   const [hasScrolled, setHasScrolled] = useState(false);
 
+  // Derive the active title for the header
+  const activeStory = activeIndex === -1 ? stories[0] : stories.filter(s => !s.isAbout)[activeIndex];
+  const activeTitle = activeStory?.title;
+
   const scrollToStory = (index: number) => {
-    const main = containerRef.current;
-    if (!main) return;
-    const targetScroll = (index + 1) * (main.clientHeight * 1.2);
-    main.scrollTo({
-      top: targetScroll,
-      behavior: 'smooth'
-    });
+    const id = index === -1 ? "story-about" : `story-${index}`;
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+    }
   };
 
   useEffect(() => {
@@ -295,7 +302,7 @@ function App() {
       if (main && main.scrollTop > 50) setHasScrolled(true);
       else setHasScrolled(false);
     };
-    main?.addEventListener('scroll', handleScroll);
+    main?.addEventListener('scroll', handleScroll, { passive: true });
     return () => main?.removeEventListener('scroll', handleScroll);
   }, [isEntered]);
 
@@ -306,97 +313,96 @@ function App() {
           <motion.div 
             key="intro"
             initial={{ opacity: 1 }}
-            exit={{ opacity: 0, scale: 1.05 }}
-            transition={{ duration: 1.5, ease: "anticipate" }}
+            exit={{ opacity: 0, scale: 1.1, filter: "blur(20px)" }}
+            transition={{ duration: 1.2, ease: [0.43, 0.13, 0.23, 0.96] }}
             className="intro-modal"
-            onClick={() => {
-              console.log("Entering Study...");
-              setIsEntered(true);
-            }}
+            onClick={() => setIsEntered(true)}
           >
-            <div 
+            <motion.div 
               className="intro-bg-image"
+              initial={{ scale: 1.1 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 10, ease: "linear" }}
               style={{ backgroundImage: 'url("assets/golf3.avif")' }}
-            ></div>
+            ></motion.div>
             <div className="intro-overlay"></div>
             
             <motion.div 
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.3, duration: 1.5 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 1.5, ease: "easeOut" }}
               className="intro-content"
             >
               <div className="sign-frame">
                 <img src="assets/jdcsign.png" alt="JDC Sign" className="jdc-sign" />
               </div>
               <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1, duration: 1 }}
                 className="intro-manifesto"
               >
                 “Between the 18th green and the blank page, I spend my time observing the human condition. I write short stories that explore the same principles I find on the course: that a great result takes focus, a bit of luck, and the willingness to play the ball where it lies.”
               </motion.div>
               <motion.div 
-                animate={{ opacity: [0.3, 0.8, 0.3] }}
-                transition={{ repeat: Infinity, duration: 3 }}
+                animate={{ opacity: [0.2, 0.5, 0.2] }}
+                transition={{ repeat: Infinity, duration: 4 }}
                 className="enter-hint"
               >
-                Click Anywhere to Enter
+                Click to enter the study
               </motion.div>
             </motion.div>
           </motion.div>
         ) : (
           <motion.div 
             key="main"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 2 }}
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
             className="site-wrapper"
           >
-            <Header />
+            <Header activeIndex={activeIndex} activeTitle={activeTitle} />
             
-            <nav className="toc-sidebar toc-left">
-              <h3 className="toc-header">Front 9</h3>
-              {RomanNumerals.slice(0, 9).map((num, i) => (
-                <button 
-                  key={i} 
-                  className={`toc-item ${activeIndex === i ? 'active' : ''} ${i >= stories.filter(s => !s.isAbout).length ? 'placeholder' : ''}`}
-                  onClick={() => scrollToStory(i)}
-                >
-                  <span className="toc-num">{num}</span>
-                  <span className="toc-title">{stories.filter(s => !s.isAbout)[i]?.title || "Upcoming Writing"}</span>
-                </button>
-              ))}
-            </nav>
-
-            <nav className="toc-sidebar toc-right">
-              <h3 className="toc-header">Back 9</h3>
-              {RomanNumerals.slice(9, 18).map((num, i) => {
-                const actualIdx = i + 9;
-                return (
+            <div className="toc-container-mobile">
+              <nav className="toc-sidebar toc-left">
+                <h3 className="toc-header">Front 9</h3>
+                {RomanNumerals.slice(0, 9).map((num, i) => (
                   <button 
-                    key={actualIdx} 
-                    className={`toc-item ${activeIndex === actualIdx ? 'active' : ''} ${actualIdx >= stories.filter(s => !s.isAbout).length ? 'placeholder' : ''}`}
-                    onClick={() => scrollToStory(actualIdx)}
+                    key={i} 
+                    className={`toc-item ${activeIndex === i ? 'active' : ''} ${i >= stories.filter(s => !s.isAbout).length ? 'placeholder' : ''}`}
+                    onClick={() => scrollToStory(i)}
                   >
                     <span className="toc-num">{num}</span>
-                    <span className="toc-title">{stories.filter(s => !s.isAbout)[actualIdx]?.title || "Upcoming Writing"}</span>
+                    <span className="toc-title">{stories.filter(s => !s.isAbout)[i]?.title || "Upcoming Writing"}</span>
                   </button>
-                );
-              })}
-            </nav>
+                ))}
+              </nav>
+
+              <nav className="toc-sidebar toc-right">
+                <h3 className="toc-header">Back 9</h3>
+                {RomanNumerals.slice(9, 18).map((num, i) => {
+                  const actualIdx = i + 9;
+                  return (
+                    <button 
+                      key={actualIdx} 
+                      className={`toc-item ${activeIndex === actualIdx ? 'active' : ''} ${actualIdx >= stories.filter(s => !s.isAbout).length ? 'placeholder' : ''}`}
+                      onClick={() => scrollToStory(actualIdx)}
+                    >
+                      <span className="toc-num">{num}</span>
+                      <span className="toc-title">{stories.filter(s => !s.isAbout)[actualIdx]?.title || "Upcoming Writing"}</span>
+                    </button>
+                  );
+                })}
+              </nav>
+            </div>
 
             <AnimatePresence>
               {!hasScrolled && (
                 <motion.div 
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
                   className="scroll-indicator"
                 >
                   <span>Scroll to Explore</span>
-                  <ChevronDown size={24} color="#d4af37" />
+                  <ChevronDown size={20} color="#d4af37" />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -411,7 +417,7 @@ function App() {
                   setActiveIndex={setActiveIndex}
                 />
               ))}
-              <div style={{ height: '100vh' }} />
+              <div style={{ height: '30vh' }} />
             </main>
           </motion.div>
         )}
