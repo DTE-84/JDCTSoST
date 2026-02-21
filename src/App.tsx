@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import Header from "./components/Header";
+import Header from "./components/Header.tsx";
 import {
   motion,
   useScroll,
