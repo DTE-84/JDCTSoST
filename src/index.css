@@ -67,7 +67,7 @@ html, body {
   pointer-events: none;
 }
 
-.rail { position: relative; z-index: 5; height: 6px; width: 100%; }
+.rail { position: relative; align-items:center; z-index: 5; height: 6px; width: 100%; }
 .rail-top { background: linear-gradient(180deg, #100a02 0%, #2e1e04 20%, #4a3006 45%, #5a3c08 60%, #3a2605 78%, #1a1002 100%); border-bottom: 1px solid rgba(212, 175, 55, 0.3); }
 .rail-bottom { background: linear-gradient(180deg, #1a1002 0%, #3a2605 22%, #523608 45%, #3e2a06 65%, #241804 82%, #100a02 100%); border-top: 1px solid rgba(212, 175, 55, 0.3); }
 
