@@ -146,7 +146,7 @@ const stories: Story[] = [
       "\"The second item in the liberal creed, after self-righteousness, is unaccountability. Liberals have invented whole college majors–psychology, sociology, women’s studies–to prove that nothing is anybody’s fault. No one is fond of taking responsibility for his actions, but consider how much you’d have to hate free will to come up with a political platform that advocates killing unborn babies but not convicted murderers. A callous pragmatist might favor abortion and capital punishment. A devout Christian would sanction neither. But it takes years of therapy to arrive at the liberal view.\"",
       "\"The three branches of government number considerably more than three and are not, in any sense, ‘branches’ since that would imply that there is something they are all attached to besides self-aggrandizement and our pocketbooks. … Government is not a machine with parts; it’s an organism. When does an intestine quit being an intestine and start becoming an asshole?\"",
       "\"The principal feature of American liberalism is sanctimoniousness. By loudly denouncing all bad things — war and hunger and date rape — liberals testify to their own terrific goodness. More important, they promote themselves to membership in a self-selecting elite of those who care deeply about such things…. It’s a kind of natural aristocracy, and the wonderful thing about this aristocracy is that you don’t have to be brave, smart, strong or even lucky to join it, you just have to be liberal.\"",
-      "\"Freedom is not empowerment. Empowerment is what the Serbs have in Bosnia. Anybody can grab a gun and be empowered. It’s not entitlement. An entitlement is what people on welfare get, and how free are they? It’s not an endlessly expanding list of rights – the “right” to education, the “right” to food and housing. That’s not freedom, that’s dependency. Those aren’t rights, those are the rations of slavery – hay and a barn for human cattle.\""
+      "\"Freedom is not empowerment. Empowerment is what the Serbs have in Bosnia. Anybody can grab a gun and be empowered. It’s not entitlement. An entitlement is what people on welfare get, and how free are they? It’s not an endlessly expanding list of rights – the “right” to education, the “right” to food and housing. That’s not freedom, that’s dependency. Those aren rights, those are the rations of slavery – hay and a barn for human cattle.\""
     ],
     image: "assets/golf4.jpg"
   }
@@ -272,6 +272,7 @@ const StorySection: React.FC<{
 };
 
 function App() {
+  console.log("App Component Init");
   const [isEntered, setIsEntered] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(-1);
@@ -308,7 +309,10 @@ function App() {
             exit={{ opacity: 0, scale: 1.05 }}
             transition={{ duration: 1.5, ease: "anticipate" }}
             className="intro-modal"
-            onClick={() => setIsEntered(true)}
+            onClick={() => {
+              console.log("Entering Study...");
+              setIsEntered(true);
+            }}
           >
             <div 
               className="intro-bg-image"

@@ -6,16 +6,27 @@ const rootElement = document.getElementById('root');
 
 if (rootElement) {
   try {
-    ReactDOM.createRoot(rootElement).render(
+    console.log("Starting React mount...");
+    const root = ReactDOM.createRoot(rootElement);
+    root.render(
       <React.StrictMode>
         <App />
-      </React.StrictMode>,
-    )
+      </React.StrictMode>
+    );
+    console.log("React render call complete");
   } catch (error) {
     console.error("Mounting Error:", error);
-    rootElement.innerHTML = `<div style="color: white; padding: 20px; font-family: sans-serif;">
-      <h2>Something went wrong</h2>
-      <pre>${error instanceof Error ? error.message : String(error)}</pre>
-    </div>`;
+    // Display error directly on the screen for mobile debugging
+    const errorDiv = document.createElement('div');
+    errorDiv.style.color = 'red';
+    errorDiv.style.padding = '20px';
+    errorDiv.style.background = 'white';
+    errorDiv.style.position = 'fixed';
+    errorDiv.style.top = '0';
+    errorDiv.style.zIndex = '9999';
+    errorDiv.innerHTML = `<h3>React Error:</h3><p>${error instanceof Error ? error.message : String(error)}</p>`;
+    document.body.appendChild(errorDiv);
   }
+} else {
+  console.error("Root element not found!");
 }
