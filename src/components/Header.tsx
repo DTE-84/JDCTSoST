@@ -21,7 +21,7 @@ const Header: React.FC = () => {
 
         <div className="rule-top" style={{ marginTop: '8px', marginBottom: 0 }}>
           <div className="rule-line"></div>
-          <div className="rule-ornament">Tavern • Golf • Wealth</div>
+          <div className="rule-ornament">Life • Golf • Love</div>
           <div className="rule-line"></div>
         </div>
       </div>
