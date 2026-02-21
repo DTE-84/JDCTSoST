@@ -75,7 +75,7 @@ html, body {
 .rule-top { display: flex; align-items: center; width: 100%; max-width: 600px; gap: 0; margin-bottom: 6px; }
 .rule-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent 0%, rgba(180, 130, 25, 0.4) 40%, rgba(212, 175, 55, 0.8) 50%, rgba(180, 130, 25, 0.4) 60%, transparent 100%); }
 .rule-ornament { padding: 0 15px; font-size: 0.5rem; color: #d4af37; letter-spacing: 0.4em; text-transform: uppercase; font-family: 'Cinzel', serif; opacity: 0.8; }
-.initials { font-family: 'Cinzel', serif; font-weight: 700; font-size: clamp(2.5rem, 5vw, 4rem); color: transparent; background: linear-gradient(135deg, #c5a059 0%, #f1d38e 25%, #b38b47 50%, #f1d38e 75%, #c5a059 100%); background-clip: text; -webkit-background-clip: text; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8)); line-height: 1; margin-bottom: 0.1rem; }
+.initials { font-family: 'Cinzel', serif; font-weight: 700; font-size: clamp(2.5rem, 5vw, 3rem); color: transparent; background: linear-gradient(135deg, #c5a059 0%, #f1d38e 25%, #b38b47 50%, #f1d38e 75%, #c5a059 100%); background-clip: text; -webkit-background-clip: text; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8)); line-height: 1; margin-bottom: 0.1rem; align-items: center; justify-content: center; }
 .full-name { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; letter-spacing: 0.3em; text-transform: uppercase; display: block; color: #d4af37; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
 
 /* ── INTRO MODAL ── */
