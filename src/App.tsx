@@ -21,14 +21,14 @@ const stories: Story[] = [
     isAbout: true,
     title: "The Sum of Small Things",
     subtitle: "Notes on Life and Living….And Some Dumb Stuff Too",
-    portrait: "/assets/JDCSOLO.png",
+    portrait: "assets/JDCSOLO.png",
     content: [
       "Former lawyer and recovering pastor. Freelance writer and author of three half-finished novels, dozens of half-completed blogs, and hundreds of half-baked ideas.",
       "I've learned life is lived in the little things, and it's the sum of those little things that make living worthwhile.",
       "About a Book",
       "Christopher Hitchens is thought to have said, “Everybody does have a book in them, but in most cases that’s where it should stay.” He may be right, but I have one coming out anyway. Stay tuned."
     ],
-    image: "/assets/golf3.avif"
+    image: "assets/golf3.avif"
   },
   {
     id: 1,
@@ -46,7 +46,7 @@ const stories: Story[] = [
       "That’s a guy worth rooting for, a guy that truly represents the best of America and the generosity of the American spirit.",
       "How cool is that?"
     ],
-    image: "/assets/golf1.png"
+    image: "assets/golf1.png"
   },
   {
     id: 2,
@@ -61,8 +61,8 @@ const stories: Story[] = [
       "And while it may seem weird to go around on all fours licking people, I hesitate to discourage it. We need creative people. We need those who become immersed in character to do what they do. Most of all, we need to refrain from stifling our children’s very nature. There are lot’s of rules out there. Sometimes, we should let our kids break them.",
       "Who knows, we might need a brain replacement surgeon someday."
     ],
-    image: "/assets/golf2.avif",
-    gallery: ["/assets/gdaughter1.webp", "/assets/gdaughter2.webp"]
+    image: "assets/golf2.avif",
+    gallery: ["assets/gdaughter1.webp", "assets/gdaughter2.webp"]
   },
   {
     id: 3,
@@ -89,7 +89,7 @@ const stories: Story[] = [
       "Anne: That would be great.",
       "And so I did. That’s right fellas, I am the best at Valentine’s Day."
     ],
-    image: "/assets/19thbar.jpg"
+    image: "assets/19thbar.jpg"
   },
   {
     id: 4,
@@ -118,8 +118,8 @@ const stories: Story[] = [
       "3 year old Layla: [sauntering by]: Bees are difficult.",
       "I’m not sure there is a lesson there, but there is affirmation. Four year old boys will do dumb stuff and their more observant sisters will deliver wisdom."
     ],
-    image: "/assets/golf3.avif",
-    gallery: ["/assets/thekids.webp"]
+    image: "assets/golf3.avif",
+    gallery: ["assets/thekids.webp"]
   },
   {
     id: 5,
@@ -146,9 +146,9 @@ const stories: Story[] = [
       "\"The second item in the liberal creed, after self-righteousness, is unaccountability. Liberals have invented whole college majors–psychology, sociology, women’s studies–to prove that nothing is anybody’s fault. No one is fond of taking responsibility for his actions, but consider how much you’d have to hate free will to come up with a political platform that advocates killing unborn babies but not convicted murderers. A callous pragmatist might favor abortion and capital punishment. A devout Christian would sanction neither. But it takes years of therapy to arrive at the liberal view.\"",
       "\"The three branches of government number considerably more than three and are not, in any sense, ‘branches’ since that would imply that there is something they are all attached to besides self-aggrandizement and our pocketbooks. … Government is not a machine with parts; it’s an organism. When does an intestine quit being an intestine and start becoming an asshole?\"",
       "\"The principal feature of American liberalism is sanctimoniousness. By loudly denouncing all bad things — war and hunger and date rape — liberals testify to their own terrific goodness. More important, they promote themselves to membership in a self-selecting elite of those who care deeply about such things…. It’s a kind of natural aristocracy, and the wonderful thing about this aristocracy is that you don’t have to be brave, smart, strong or even lucky to join it, you just have to be liberal.\"",
-      "\"Freedom is not empowerment. Empowerment is what the Serbs have in Bosnia. Anybody can grab a gun and be empowered. It’s not entitlement. An entitlement is what people on welfare get, and how free are they? It’s not an endlessly expanding list of rights – the “right” to education, the “right” to food and housing. That’s not freedom, that’s dependency. Those aren rights, those are the rations of slavery – hay and a barn for human cattle.\""
+      "\"Freedom is not empowerment. Empowerment is what the Serbs have in Bosnia. Anybody can grab a gun and be empowered. It’s not entitlement. An entitlement is what people on welfare get, and how free are they? It’s not an endlessly expanding list of rights – the “right” to education, the “right” to food and housing. That’s not freedom, that’s dependency. Those aren’t rights, those are the rations of slavery – hay and a barn for human cattle.\""
     ],
-    image: "/assets/golf4.jpg"
+    image: "assets/golf4.jpg"
   }
 ];
 
@@ -312,7 +312,7 @@ function App() {
           >
             <div 
               className="intro-bg-image"
-              style={{ backgroundImage: 'url("/assets/golf3.avif")' }}
+              style={{ backgroundImage: 'url("assets/golf3.avif")' }}
             ></div>
             <div className="intro-overlay"></div>
             
@@ -323,7 +323,7 @@ function App() {
               className="intro-content"
             >
               <div className="sign-frame">
-                <img src="/assets/jdcsign.png" alt="JDC Sign" className="jdc-sign" />
+                <img src="assets/jdcsign.png" alt="JDC Sign" className="jdc-sign" />
               </div>
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
