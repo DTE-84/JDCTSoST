@@ -1,8 +1,14 @@
-import React, { useRef, useState, useEffect } from 'react';
-import Header from './Header';
-import { motion, useScroll, useTransform, AnimatePresence, useSpring } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
-import './index.css';
+import React, { useRef, useState, useEffect } from "react";
+import Header from "./Header";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+  useSpring,
+} from "framer-motion";
+import { ChevronDown } from "lucide-react";
+import "./index.css";
 
 interface Story {
   id: string | number;
@@ -26,9 +32,9 @@ const stories: Story[] = [
       "Former lawyer and recovering pastor. Freelance writer and author of three half-finished novels, dozens of half-completed blogs, and hundreds of half-baked ideas.",
       "I've learned life is lived in the little things, and it's the sum of those little things that make living worthwhile.",
       "About a Book",
-      "Christopher Hitchens is thought to have said, “Everybody does have a book in them, but in most cases that’s where it should stay.” He may be right, but I have one coming out anyway. Stay tuned."
+      "Christopher Hitchens is thought to have said, “Everybody does have a book in them, but in most cases that’s where it should stay.” He may be right, but I have one coming out anyway. Stay tuned.",
     ],
-    image: "assets/golf3.avif"
+    image: "assets/golf3.avif",
   },
   {
     id: 1,
@@ -44,9 +50,9 @@ const stories: Story[] = [
       "They were both wrong.",
       "That’s not what Lanto Griffin said. He said that his journey was realized through the “power of generosity.” He acknowledged that his success was attributable not just to his own desire and skill but to the generosity of those, like the golf pro and his financial patrons, who selflessly gave to him so that he might realize his dream.",
       "That’s a guy worth rooting for, a guy that truly represents the best of America and the generosity of the American spirit.",
-      "How cool is that?"
+      "How cool is that?",
     ],
-    image: "assets/golf1.png"
+    image: "assets/golf1.png",
   },
   {
     id: 2,
@@ -59,10 +65,10 @@ const stories: Story[] = [
       "She also mentioned that it would be very expensive. It would cost one dollar.",
       "All of that is preamble to the purpose of this post. My granddaughter is a creative child. She became a doctor when she donned a doctor’s clothes. Recently, she insisted on being called Trudy after watching the movie “Young Woman and the Sea” about Trudy Ederle swimming the English Channel. She decided she was ready to swim across the channel, determined really. She even lubed up before her swimming lesson in the local pool. Not that long ago, she was “Mean Puppy,” growling and biting everyone around her. Her mom had to say “quit licking people. That’s weird.” Mean Puppy responded with growls and lunging nips at Katie’s arm.",
       "And while it may seem weird to go around on all fours licking people, I hesitate to discourage it. We need creative people. We need those who become immersed in character to do what they do. Most of all, we need to refrain from stifling our children’s very nature. There are lot’s of rules out there. Sometimes, we should let our kids break them.",
-      "Who knows, we might need a brain replacement surgeon someday."
+      "Who knows, we might need a brain replacement surgeon someday.",
     ],
     image: "assets/golf2.avif",
-    gallery: ["assets/gdaughter1.webp", "assets/gdaughter2.webp"]
+    gallery: ["assets/gdaughter1.webp", "assets/gdaughter2.webp"],
   },
   {
     id: 3,
@@ -87,9 +93,9 @@ const stories: Story[] = [
       "Anne: No, that’s ok, really.",
       "Me: How about I run to Hy Vee and get you a Diet Coke",
       "Anne: That would be great.",
-      "And so I did. That’s right fellas, I am the best at Valentine’s Day."
+      "And so I did. That’s right fellas, I am the best at Valentine’s Day.",
     ],
-    image: "assets/19thbar.jpg"
+    image: "assets/19thbar.jpg",
   },
   {
     id: 4,
@@ -116,10 +122,10 @@ const stories: Story[] = [
       "Grandma [giving up]: Well, bees can be dangerous if you don’t leave them alone, but if you leave them alone bees will leave you alone.",
       "Brock: Yeah… HEY, you should come see our FORT! [runs off into another room].",
       "3 year old Layla: [sauntering by]: Bees are difficult.",
-      "I’m not sure there is a lesson there, but there is affirmation. Four year old boys will do dumb stuff and their more observant sisters will deliver wisdom."
+      "I’m not sure there is a lesson there, but there is affirmation. Four year old boys will do dumb stuff and their more observant sisters will deliver wisdom.",
     ],
     image: "assets/golf3.avif",
-    gallery: ["assets/thekids.webp"]
+    gallery: ["assets/thekids.webp"],
   },
   {
     id: 5,
@@ -131,38 +137,61 @@ const stories: Story[] = [
       "I could go on, but I’m kind of sad that PJ O’Rourke has left us.",
       "I am a collector of quotes. I have an entire file on PJ O’Rourke, so I’ll end by sharing a select few. There are gems in here, so bear with me on the length.",
       "Quotes from PJ:",
-      "\"I think the Baby Boom does have a tendency to get its nose in everything. The Greatest Generation had a better tendency to leave people alone. Of course, they also had a better tendency to hate everybody’s guts.\"",
-      "\"Giving money and power to government is like giving whiskey and car keys to teenage boys.\"",
-      "\"Making fun of born-again Christians is like hunting dairy cows with a high powered rifle and scope.\"",
-      "\"Earnestness is stupidity gone to college.\"",
-      "\"If you spend 72 hours in a place you’ve never been, talking to people whose language you don’t speak about social, political, and economic complexities you don understand, and you come back as the world’s biggest know-it-all, you’re a reporter. Either that or you’re President Obama.\"",
-      "\"People will tell you anything but what they do is always the truth.\"",
-      "\"The idea of a news broadcast once was to find someone with information and broadcast it. The idea now is to find someone with ignorance and spread it around.\"",
-      "\"America has to act. But, when America acts, other nations accuse us of being ‘hegemonistic’, of engaging in ‘unilateralism’, of behaving as if we’re the only nation on earth that counts. We are.\"",
-      "\"Term limits aren’t enough. We need jail.\"",
-      "\"At the core of liberalism is the spoiled child — miserable, as all spoiled children are, unsatisfied, demanding, ill-disciplined, despotic and useless. Liberalism is a philosophy of sniveling brats.\"",
-      "\"The free market is ugly and stupid, like going to the mall; the unfree market is just as ugly and just as stupid, except there is nothing in the mall and if you don’t go there they shoot you.\"",
-      "\"I was having dinner…in London…when eventually he got, as the Europeans always do, to the part about “Your country’s never been invaded.” And so I said, “Let me tell you who those bad guys are. They’re us. WE BE BAD. We’re the baddest-assed sons of bitches that ever jogged in Reeboks. We’re three-quarters grizzly bear and two-thirds car wreck and descended from a stock market crash on our mother’s side. You take your Germany, France, and Spain, roll them all together and it wouldn’t give us room to park our cars. We’re the big boys, Jack, the original, giant, economy-sized, new and improved butt kickers of all time. When we snort coke in Houston, people lose their hats in Cap d’Antibes. And we’ve got an American Express card credit limit higher than your piss-ant metric numbers go. You say our country’s never been invaded? You’re right, little buddy. Because I’d like to see the needle-dicked foreigners who’d have the guts to try. We drink napalm to get our hearts started in the morning. A rape and a mugging is our way of saying ‘Cheerio.’ Hell can’t hold our sock-hops. We walk taller, talk louder, spit further, fuck longer and buy more things than you know the names of. I’d rather be a junkie in a New York City jail than king, queen, and jack of all Europeans. We eat little countries like this for breakfast and shit them out before lunch.\"",
-      "\"The second item in the liberal creed, after self-righteousness, is unaccountability. Liberals have invented whole college majors–psychology, sociology, women’s studies–to prove that nothing is anybody’s fault. No one is fond of taking responsibility for his actions, but consider how much you’d have to hate free will to come up with a political platform that advocates killing unborn babies but not convicted murderers. A callous pragmatist might favor abortion and capital punishment. A devout Christian would sanction neither. But it takes years of therapy to arrive at the liberal view.\"",
-      "\"The three branches of government number considerably more than three and are not, in any sense, ‘branches’ since that would imply that there is something they are all attached to besides self-aggrandizement and our pocketbooks. … Government is not a machine with parts; it’s an organism. When does an intestine quit being an intestine and start becoming an asshole?\"",
-      "\"The principal feature of American liberalism is sanctimoniousness. By loudly denouncing all bad things — war and hunger and date rape — liberals testify to their own terrific goodness. More important, they promote themselves to membership in a self-selecting elite of those who care deeply about such things…. It’s a kind of natural aristocracy, and the wonderful thing about this aristocracy is that you don’t have to be brave, smart, strong or even lucky to join it, you just have to be liberal.\"",
-      "\"Freedom is not empowerment. Empowerment is what the Serbs have in Bosnia. Anybody can grab a gun and be empowered. It’s not entitlement. An entitlement is what people on welfare get, and how free are they? It’s not an endlessly expanding list of rights – the “right” to education, the “right” to food and housing. That’s not freedom, that’s dependency. Those aren rights, those are the rations of slavery – hay and a barn for human cattle.\""
+      '"I think the Baby Boom does have a tendency to get its nose in everything. The Greatest Generation had a better tendency to leave people alone. Of course, they also had a better tendency to hate everybody’s guts."',
+      '"Giving money and power to government is like giving whiskey and car keys to teenage boys."',
+      '"Making fun of born-again Christians is like hunting dairy cows with a high powered rifle and scope."',
+      '"Earnestness is stupidity gone to college."',
+      '"If you spend 72 hours in a place you’ve never been, talking to people whose language you don’t speak about social, political, and economic complexities you don understand, and you come back as the world’s biggest know-it-all, you’re a reporter. Either that or you’re President Obama."',
+      '"People will tell you anything but what they do is always the truth."',
+      '"The idea of a news broadcast once was to find someone with information and broadcast it. The idea now is to find someone with ignorance and spread it around."',
+      '"America has to act. But, when America acts, other nations accuse us of being ‘hegemonistic’, of engaging in ‘unilateralism’, of behaving as if we’re the only nation on earth that counts. We are."',
+      '"Term limits aren’t enough. We need jail."',
+      '"At the core of liberalism is the spoiled child — miserable, as all spoiled children are, unsatisfied, demanding, ill-disciplined, despotic and useless. Liberalism is a philosophy of sniveling brats."',
+      '"The free market is ugly and stupid, like going to the mall; the unfree market is just as ugly and just as stupid, except there is nothing in the mall and if you don’t go there they shoot you."',
+      '"I was having dinner…in London…when eventually he got, as the Europeans always do, to the part about “Your country’s never been invaded.” And so I said, “Let me tell you who those bad guys are. They’re us. WE BE BAD. We’re the baddest-assed sons of bitches that ever jogged in Reeboks. We’re three-quarters grizzly bear and two-thirds car wreck and descended from a stock market crash on our mother’s side. You take your Germany, France, and Spain, roll them all together and it wouldn’t give us room to park our cars. We’re the big boys, Jack, the original, giant, economy-sized, new and improved butt kickers of all time. When we snort coke in Houston, people lose their hats in Cap d’Antibes. And we’ve got an American Express card credit limit higher than your piss-ant metric numbers go. You say our country’s never been invaded? You’re right, little buddy. Because I’d like to see the needle-dicked foreigners who’d have the guts to try. We drink napalm to get our hearts started in the morning. A rape and a mugging is our way of saying ‘Cheerio.’ Hell can’t hold our sock-hops. We walk taller, talk louder, spit further, fuck longer and buy more things than you know the names of. I’d rather be a junkie in a New York City jail than king, queen, and jack of all Europeans. We eat little countries like this for breakfast and shit them out before lunch."',
+      '"The second item in the liberal creed, after self-righteousness, is unaccountability. Liberals have invented whole college majors–psychology, sociology, women’s studies–to prove that nothing is anybody’s fault. No one is fond of taking responsibility for his actions, but consider how much you’d have to hate free will to come up with a political platform that advocates killing unborn babies but not convicted murderers. A callous pragmatist might favor abortion and capital punishment. A devout Christian would sanction neither. But it takes years of therapy to arrive at the liberal view."',
+      '"The three branches of government number considerably more than three and are not, in any sense, ‘branches’ since that would imply that there is something they are all attached to besides self-aggrandizement and our pocketbooks. … Government is not a machine with parts; it’s an organism. When does an intestine quit being an intestine and start becoming an asshole?"',
+      '"The principal feature of American liberalism is sanctimoniousness. By loudly denouncing all bad things — war and hunger and date rape — liberals testify to their own terrific goodness. More important, they promote themselves to membership in a self-selecting elite of those who care deeply about such things…. It’s a kind of natural aristocracy, and the wonderful thing about this aristocracy is that you don’t have to be brave, smart, strong or even lucky to join it, you just have to be liberal."',
+      '"Freedom is not empowerment. Empowerment is what the Serbs have in Bosnia. Anybody can grab a gun and be empowered. It’s not entitlement. An entitlement is what people on welfare get, and how free are they? It’s not an endlessly expanding list of rights – the “right” to education, the “right” to food and housing. That’s not freedom, that’s dependency. Those aren rights, those are the rations of slavery – hay and a barn for human cattle."',
     ],
-    image: "assets/golf4.jpg"
-  }
+    image: "assets/golf4.jpg",
+  },
 ];
 
-const RomanNumerals = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII"];
+const RomanNumerals = [
+  "I",
+  "II",
+  "III",
+  "IV",
+  "V",
+  "VI",
+  "VII",
+  "VIII",
+  "IX",
+  "X",
+  "XI",
+  "XII",
+  "XIII",
+  "XIV",
+  "XV",
+  "XVI",
+  "XVII",
+  "XVIII",
+];
 
-const StorySection: React.FC<{ 
-  story: Story; 
-  index: number; 
+const StorySection: React.FC<{
+  story: Story;
+  index: number;
   containerRef: React.RefObject<HTMLDivElement | null>;
   setActiveIndex: (index: number) => void;
 }> = ({ story, index, containerRef, setActiveIndex }) => {
   const ref = useRef<HTMLElement>(null);
   const isAbout = story.isAbout;
-  const storyIndex = isAbout ? -1 : (typeof story.id === 'number' ? story.id - 1 : index);
+  const storyIndex = isAbout
+    ? -1
+    : typeof story.id === "number"
+      ? story.id - 1
+      : index;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -174,8 +203,8 @@ const StorySection: React.FC<{
       {
         root: containerRef.current,
         threshold: 0.3, // Lowered threshold for better mobile detection
-        rootMargin: "-10% 0px -10% 0px"
-      }
+        rootMargin: "-10% 0px -10% 0px",
+      },
     );
 
     if (ref.current) {
@@ -188,56 +217,87 @@ const StorySection: React.FC<{
   const { scrollYProgress } = useScroll({
     target: ref,
     container: containerRef as React.RefObject<HTMLDivElement>,
-    offset: ["start end", "center center", "end start"]
+    offset: ["start end", "center center", "end start"],
   });
 
   const smoothProgress = useSpring(scrollYProgress, {
     stiffness: 70, // Slightly softer spring
     damping: 25,
-    restDelta: 0.001
+    restDelta: 0.001,
   });
 
   // More natural transition curves
   const opacity = useTransform(smoothProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
-  const y = useTransform(smoothProgress, [0, 0.2, 0.8, 1], [80, 0, 0, -50]); 
-  const scale = useTransform(smoothProgress, [0, 0.2, 0.8, 1], [0.98, 1, 1, 0.98]);
+  const y = useTransform(smoothProgress, [0, 0.2, 0.8, 1], [80, 0, 0, -50]);
+  const scale = useTransform(
+    smoothProgress,
+    [0, 0.2, 0.8, 1],
+    [0.98, 1, 1, 0.98],
+  );
   const rotateX = useTransform(smoothProgress, [0, 0.2, 0.8, 1], [5, 0, 0, -5]);
-  const blur = useTransform(smoothProgress, [0, 0.15, 0.85, 1], ["blur(5px)", "blur(0px)", "blur(0px)", "blur(5px)"]);
-  
-  const backgroundOpacity = useTransform(smoothProgress, [0, 0.3, 0.7, 1], [0, 0.4, 0.4, 0]);
+  const blur = useTransform(
+    smoothProgress,
+    [0, 0.15, 0.85, 1],
+    ["blur(5px)", "blur(0px)", "blur(0px)", "blur(5px)"],
+  );
+
+  const backgroundOpacity = useTransform(
+    smoothProgress,
+    [0, 0.3, 0.7, 1],
+    [0, 0.4, 0.4, 0],
+  );
   const backgroundScale = useTransform(smoothProgress, [0, 1], [1.15, 1.02]);
 
   return (
-    <section ref={ref} id={isAbout ? "story-about" : `story-${storyIndex}`} className="story-section">
-      <motion.div 
+    <section
+      ref={ref}
+      id={isAbout ? "story-about" : `story-${storyIndex}`}
+      className="story-section"
+    >
+      <motion.div
         className="story-background"
-        style={{ 
+        style={{
           backgroundImage: `url(${story.image})`,
           opacity: backgroundOpacity,
-          scale: backgroundScale
+          scale: backgroundScale,
         }}
       />
-      
-      <motion.div 
+
+      <motion.div
         className="story-content-wrapper"
-        style={{ opacity, y, scale, rotateX, filter: blur, perspective: "1500px" }}
+        style={{
+          opacity,
+          y,
+          scale,
+          rotateX,
+          filter: blur,
+          perspective: "1500px",
+        }}
       >
-        <div className={`story-card ${isAbout ? 'about-card' : ''}`}>
+        <div className={`story-card ${isAbout ? "about-card" : ""}`}>
           <div className="card-texture"></div>
-          
+
           {isAbout && story.portrait && (
             <div className="portrait-container">
-              <img src={story.portrait} alt="Author Portrait" className="about-portrait" />
+              <img
+                src={story.portrait}
+                alt="Author Portrait"
+                className="about-portrait"
+              />
             </div>
           )}
 
           <h2 className="story-title">{story.title}</h2>
-          {story.subtitle && <h3 className="story-subtitle">{story.subtitle}</h3>}
-          
+          {story.subtitle && (
+            <h3 className="story-subtitle">{story.subtitle}</h3>
+          )}
+
           <div className="story-divider"></div>
-          
+
           {story.gallery && (
-            <div className={`story-gallery ${story.gallery.length === 1 ? 'single-img' : ''}`}>
+            <div
+              className={`story-gallery ${story.gallery.length === 1 ? "single-img" : ""}`}
+            >
               {story.gallery.map((img, i) => (
                 <div key={i} className="gallery-frame">
                   <img src={img} alt={`Gallery ${i}`} className="gallery-img" />
@@ -249,18 +309,21 @@ const StorySection: React.FC<{
           <div className="story-body">
             {story.content.map((paragraph, i) => {
               const isLast = i === story.content.length - 1;
-              const isDialog = paragraph.includes(':') && !paragraph.startsWith('"');
-              const isQuote = paragraph.startsWith('"') || (story.title === "R.I.P. PJ" && i >= 6);
+              const isDialog =
+                paragraph.includes(":") && !paragraph.startsWith('"');
+              const isQuote =
+                paragraph.startsWith('"') ||
+                (story.title === "R.I.P. PJ" && i >= 6);
               const isTeaserTitle = paragraph === "About a Book";
-              
+
               return (
-                <p 
-                  key={i} 
+                <p
+                  key={i}
                   className={`story-paragraph 
-                    ${isLast ? 'last-para' : ''} 
-                    ${isDialog ? 'dialog-para' : ''} 
-                    ${isQuote ? 'quote-para' : ''}
-                    ${isTeaserTitle ? 'teaser-title' : ''}
+                    ${isLast ? "last-para" : ""} 
+                    ${isDialog ? "dialog-para" : ""} 
+                    ${isQuote ? "quote-para" : ""}
+                    ${isTeaserTitle ? "teaser-title" : ""}
                   `}
                 >
                   {paragraph}
@@ -281,7 +344,10 @@ function App() {
   const [hasScrolled, setHasScrolled] = useState(false);
 
   // Derive the active title for the header
-  const activeStory = activeIndex === -1 ? stories[0] : stories.filter(s => !s.isAbout)[activeIndex];
+  const activeStory =
+    activeIndex === -1
+      ? stories[0]
+      : stories.filter((s) => !s.isAbout)[activeIndex];
   const activeTitle = activeStory?.title;
 
   const scrollToStory = (index: number) => {
@@ -289,8 +355,8 @@ function App() {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center'
+        behavior: "smooth",
+        block: "center",
       });
     }
   };
@@ -302,15 +368,15 @@ function App() {
       if (main && main.scrollTop > 50) setHasScrolled(true);
       else setHasScrolled(false);
     };
-    main?.addEventListener('scroll', handleScroll, { passive: true });
-    return () => main?.removeEventListener('scroll', handleScroll);
+    main?.addEventListener("scroll", handleScroll, { passive: true });
+    return () => main?.removeEventListener("scroll", handleScroll);
   }, [isEntered]);
 
   return (
     <div className="app-container">
       <AnimatePresence mode="wait">
         {!isEntered ? (
-          <motion.div 
+          <motion.div
             key="intro"
             initial={{ opacity: 1 }}
             exit={{ opacity: 0, scale: 1.1, filter: "blur(20px)" }}
@@ -318,7 +384,7 @@ function App() {
             className="intro-modal"
             onClick={() => setIsEntered(true)}
           >
-            <motion.div 
+            <motion.div
               className="intro-bg-image"
               initial={{ scale: 1.1 }}
               animate={{ scale: 1 }}
@@ -326,33 +392,42 @@ function App() {
               style={{ backgroundImage: 'url("assets/golf3.avif")' }}
             ></motion.div>
             <div className="intro-overlay"></div>
-            
-            <motion.div 
+
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 1.5, ease: "easeOut" }}
               className="intro-content"
             >
               <div className="sign-frame">
-                <img src="assets/jdcsign.png" alt="JDC Sign" className="jdc-sign" />
+                <img
+                  src="assets/jdcsign.png"
+                  alt="JDC Sign"
+                  className="jdc-sign"
+                />
               </div>
-              <motion.div 
-                className="intro-manifesto"
-              >
-                “Between the 18th green and the blank page, I spend my time observing the human condition. I write short stories that explore the same principles I find on the course: that a great result takes focus, a bit of luck, and the willingness to play the ball where it lies.”
+              <motion.div className="intro-manifesto">
+                “Between the 18th green and the blank page, I spend my time
+                observing the human condition. I write short stories that
+                explore the same principles I find on the course: that a great
+                result takes focus, a bit of luck, and the willingness to play
+                the ball where it lies.”
               </motion.div>
               <motion.button
                 animate={{ opacity: [0.2, 0.5, 0.2] }}
                 transition={{ repeat: Infinity, duration: 4 }}
                 className="enter-hint"
-                onClick={(e) => { e.stopPropagation(); setIsEntered(true); }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsEntered(true);
+                }}
               >
                 Click to enter the study
               </motion.button>
             </motion.div>
           </motion.div>
         ) : (
-          <motion.div 
+          <motion.div
             key="main"
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -360,18 +435,21 @@ function App() {
             className="site-wrapper"
           >
             <Header activeIndex={activeIndex} activeTitle={activeTitle} />
-            
+
             <div className="toc-container-mobile">
               <nav className="toc-sidebar toc-left">
                 <h3 className="toc-header">Front 9</h3>
                 {RomanNumerals.slice(0, 9).map((num, i) => (
-                  <button 
-                    key={i} 
-                    className={`toc-item ${activeIndex === i ? 'active' : ''} ${i >= stories.filter(s => !s.isAbout).length ? 'placeholder' : ''}`}
+                  <button
+                    key={i}
+                    className={`toc-item ${activeIndex === i ? "active" : ""} ${i >= stories.filter((s) => !s.isAbout).length ? "placeholder" : ""}`}
                     onClick={() => scrollToStory(i)}
                   >
                     <span className="toc-num">{num}</span>
-                    <span className="toc-title">{stories.filter(s => !s.isAbout)[i]?.title || "Upcoming Writing"}</span>
+                    <span className="toc-title">
+                      {stories.filter((s) => !s.isAbout)[i]?.title ||
+                        "Upcoming Writing"}
+                    </span>
                   </button>
                 ))}
               </nav>
@@ -381,13 +459,16 @@ function App() {
                 {RomanNumerals.slice(9, 18).map((num, i) => {
                   const actualIdx = i + 9;
                   return (
-                    <button 
-                      key={actualIdx} 
-                      className={`toc-item ${activeIndex === actualIdx ? 'active' : ''} ${actualIdx >= stories.filter(s => !s.isAbout).length ? 'placeholder' : ''}`}
+                    <button
+                      key={actualIdx}
+                      className={`toc-item ${activeIndex === actualIdx ? "active" : ""} ${actualIdx >= stories.filter((s) => !s.isAbout).length ? "placeholder" : ""}`}
                       onClick={() => scrollToStory(actualIdx)}
                     >
                       <span className="toc-num">{num}</span>
-                      <span className="toc-title">{stories.filter(s => !s.isAbout)[actualIdx]?.title || "Upcoming Writing"}</span>
+                      <span className="toc-title">
+                        {stories.filter((s) => !s.isAbout)[actualIdx]?.title ||
+                          "Upcoming Writing"}
+                      </span>
                     </button>
                   );
                 })}
@@ -396,13 +477,13 @@ function App() {
 
             <AnimatePresence>
               {!hasScrolled && (
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
                   className="scroll-indicator"
                 >
-                  <span>Scroll to Explore</span>
+                  <span></span>
                   <ChevronDown size={20} color="#d4af37" />
                 </motion.div>
               )}
@@ -410,15 +491,15 @@ function App() {
 
             <main ref={containerRef} className="main-content">
               {stories.map((story, index) => (
-                <StorySection 
-                  key={story.id} 
-                  story={story} 
-                  index={index} 
+                <StorySection
+                  key={story.id}
+                  story={story}
+                  index={index}
                   containerRef={containerRef}
                   setActiveIndex={setActiveIndex}
                 />
               ))}
-              <div style={{ height: '30vh' }} />
+              <div style={{ height: "30vh" }} />
             </main>
           </motion.div>
         )}
